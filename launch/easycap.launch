@@ -1,0 +1,4 @@
+<launch>
+    <arg name="camera_index" default="2" />
+    <node pkg="easycap_driver" name="driver" type="driver.py" args="$(arg camera_index)" output="screen" />
+</launch>
