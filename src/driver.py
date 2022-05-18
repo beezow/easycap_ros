@@ -8,12 +8,13 @@ from cv_bridge import CvBridge
 
 class EasyCap:
     def __init__(self, cam_num):
+        rospy.init_node("EasyCapFPV")
+
         self.cap = cv2.VideoCapture()
         self.cap.open(cam_num, apiPreference=cv2.CAP_V4L2)
         if not self.cap.isOpened():
             rospy.logfatal('Could not open capture device %d', cam_num)
             print('couldnot open')
-        rospy.init_node("EasyCapFPV")
         
         self.bridge = CvBridge()
         self.easycap_publisher = rospy.Publisher("easycap", Image, queue_size=1)
